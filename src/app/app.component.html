@@ -1,0 +1,28 @@
+<form  #fileForm="ngForm">
+  <input name="fileInput" id="inputId" type="file" accept=".txt" (change)="onFileChange($event.target.files)">
+  <button (click)="fileForm.resetForm();resetPage(fileForm)">Reset File</button>
+</form>
+
+
+<div>
+  <h3>File Content</h3>
+  <!-- <pre> {{fileContent}} </pre> -->
+  <li>File Lines Length : {{fileContentArray?.length}}</li>
+  <p>{{searchText}}</p>
+</div>
+
+<div class="col-2">
+  <label for="searchText">Search</label>
+  <input type="text" id="search" name="search" [(ngModel)]="searchText">
+  <button (click)="proccessSearch()">Search</button>
+  <p>Searched Array Length : {{searchedFileKeyArray?.length}}</p>
+  <p>***************************************************************</p>
+</div>
+
+<div *ngFor="let eachLine of searchedFileKeyArray">
+  <!-- <span>{{eachLine}}</span> -->
+  <li>{{eachLine}}</li>
+</div>
+
+
+<!-- <div *ngFor="let eachLine of searchedFileKeyArray | searchKeyFilter :  searchText"></div> -->
